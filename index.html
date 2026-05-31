@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16181c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="L2P Check">
+<title>L2P Vehicle Condition Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Archivo+Expanded:wght@700;800&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   L2P VEHICLE CONDITION REPORT
+   Northern Suburbs Community Centre Inc.
+   Single-file web app. Nothing to install, nothing to connect.
+   Hosted as one .html file (GitHub Pages, or just opened on a phone).
+   ========================================================================= */
+
+:root{
+  --ink:#16181c;
+  --ink-soft:#3a3f47;
+  --paper:#f4f1e9;
+  --card:#ffffff;
+  --line:#e4ded0;
+  --line-strong:#d2cab8;
+  --lplate:#f6c700;        /* learner-plate yellow accent */
+  --lplate-deep:#d8ad00;
+  --ok:#2e7d4f;
+  --ok-soft:#e7f2eb;
+  --known:#c0851a;
+  --known-soft:#f8efdc;
+  --notok:#c2391f;
+  --notok-soft:#f9e6e1;
+  --muted:#7c7768;
+  --radius:14px;
+  --shadow:0 1px 2px rgba(22,24,28,.06), 0 6px 18px rgba(22,24,28,.05);
+}
+
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:"Barlow",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  font-size:16px;
+  line-height:1.45;
+  padding-bottom:120px; /* room for sticky action bar */
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Header ---------- */
+header{
+  background:var(--ink);
+  color:#fff;
+  padding:18px 18px 16px;
+  padding-top:max(18px, env(safe-area-inset-top));
+  position:sticky; top:0; z-index:50;
+  box-shadow:0 2px 0 var(--lplate), 0 8px 20px rgba(0,0,0,.18);
+}
+.head-row{display:flex; align-items:center; gap:12px;}
+.logo-chip{
+  flex:0 0 auto;
+  background:#fff; border-radius:11px; padding:7px 10px;
+  display:flex; align-items:center;
+  box-shadow:0 2px 7px rgba(0,0,0,.3);
+}
+.l2p-logo{height:36px; width:auto; display:block;}
+.head-titles{flex:1 1 auto; min-width:0;}
+.head-titles h1{
+  font-family:"Archivo Expanded","Archivo",sans-serif;
+  font-weight:800; font-size:18px; margin:0; letter-spacing:.02em;
+  text-transform:uppercase; line-height:1.05;
+}
+.head-titles p{margin:2px 0 0; font-size:12.5px; color:#b9bcc2; letter-spacing:.02em;}
+.status-pill{
+  margin-top:14px;
+  display:flex; align-items:center; gap:8px;
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700;
+  font-size:14px; letter-spacing:.03em; text-transform:uppercase;
+  padding:9px 12px; border-radius:10px;
+  background:var(--ok); color:#fff;
+  transition:background .25s ease;
+}
+.status-pill.has-issues{background:var(--notok);}
+.status-pill .dot{width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.9);}
+
+/* ---------- Layout ---------- */
+main{max-width:680px; margin:0 auto; padding:16px 14px 0;}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  margin-bottom:14px;
+  overflow:hidden;
+}
+.card-head{
+  display:flex; align-items:center; gap:10px;
+  padding:13px 15px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,#fff, #fdfbf6);
+}
+.card-head .tab{width:6px; height:20px; border-radius:3px; background:var(--lplate); flex:0 0 auto;}
+.card-head h2{
+  margin:0; font-family:"Barlow Semi Condensed",sans-serif;
+  font-weight:700; font-size:15.5px; letter-spacing:.05em; text-transform:uppercase;
+  color:var(--ink);
+}
+.card-head .hint{margin-left:auto; font-size:12px; color:var(--muted); font-weight:500;}
+.card-body{padding:6px 15px 14px;}
+
+/* ---------- Top details ---------- */
+.field{margin-top:12px;}
+.field > label{
+  display:block; font-size:12.5px; font-weight:700; letter-spacing:.04em;
+  text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+}
+input[type="text"], input[type="number"], textarea{
+  width:100%; font-family:inherit; font-size:16px; color:var(--ink);
+  background:#fff; border:1.5px solid var(--line-strong); border-radius:10px;
+  padding:11px 12px; outline:none; transition:border-color .15s;
+}
+input:focus, textarea:focus{border-color:var(--lplate-deep);}
+textarea{resize:vertical; min-height:64px; line-height:1.4;}
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.veh-chip{
+  margin-top:10px; display:inline-flex; align-items:center; gap:8px;
+  background:#fbf6e3; border:1px solid #ecdfa6; color:#6a5a14;
+  padding:7px 11px; border-radius:9px; font-weight:600; font-size:13.5px;
+}
+
+/* ---------- Two-button picker (inspector) ---------- */
+.pick2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.pick2 button{
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:16px;
+  letter-spacing:.02em; padding:14px 8px; border-radius:11px; cursor:pointer;
+  border:1.5px solid var(--line-strong); background:#fff; color:var(--ink-soft);
+  transition:all .15s;
+}
+.pick2 button.active{background:var(--ink); color:#fff; border-color:var(--ink);}
+
+/* ---------- Fuel gauge ---------- */
+.gauge{display:grid; grid-template-columns:repeat(4,1fr); gap:8px;}
+.gauge button{
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:16px;
+  padding:13px 4px; border-radius:10px; cursor:pointer;
+  border:1.5px solid var(--line-strong); background:#fff; color:var(--ink-soft);
+  transition:all .15s;
+}
+.gauge button.active{background:var(--lplate); border-color:var(--lplate-deep); color:#3a2f00;}
+
+/* ---------- Inspection rows ---------- */
+.row{padding:12px 0; border-top:1px solid var(--line);}
+.row:first-child{border-top:none;}
+.row-label{font-weight:600; font-size:15px; margin-bottom:9px; color:var(--ink);}
+.seg{display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px;}
+.seg button{
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:14px;
+  letter-spacing:.02em; padding:12px 4px; border-radius:9px; cursor:pointer;
+  border:1.5px solid var(--line-strong); background:#fff; color:var(--ink-soft);
+  transition:all .14s; text-transform:uppercase;
+}
+.seg button:active{transform:scale(.97);}
+.seg button.active[data-v="ok"]{background:var(--ok); border-color:var(--ok); color:#fff;}
+.seg button.active[data-v="known"]{background:var(--known); border-color:var(--known); color:#fff;}
+.seg button.active[data-v="notok"]{background:var(--notok); border-color:var(--notok); color:#fff;}
+.note{margin-top:9px; display:none;}
+.note.show{display:block; animation:slide .2s ease;}
+.note input{font-size:15px; padding:10px 12px;}
+@keyframes slide{from{opacity:0; transform:translateY(-4px);} to{opacity:1; transform:none;}}
+
+/* ---------- Toggle chips (present / yes-no) ---------- */
+.chips{display:flex; flex-direction:column; gap:0;}
+.chip{
+  display:flex; align-items:center; gap:12px; padding:12px 2px;
+  border-top:1px solid var(--line); cursor:pointer; user-select:none;
+}
+.chip:first-child{border-top:none;}
+.chip .box{
+  flex:0 0 auto; width:26px; height:26px; border-radius:8px;
+  border:2px solid var(--line-strong); background:#fff;
+  display:flex; align-items:center; justify-content:center;
+  transition:all .15s; color:#fff; font-weight:800; font-size:16px;
+}
+.chip.on .box{background:var(--ok); border-color:var(--ok);}
+.chip .box svg{width:15px; height:15px; opacity:0; transition:opacity .15s;}
+.chip.on .box svg{opacity:1;}
+.chip .clabel{font-size:15px; font-weight:500; flex:1;}
+.chip-note{margin:2px 0 10px 38px; }
+.chip-note input{font-size:14px; padding:9px 11px;}
+
+/* ---------- Single toggle (boolean, standalone) ---------- */
+.bool{
+  display:flex; align-items:center; gap:12px; cursor:pointer; padding:4px 0;
+}
+.bool .switch{
+  flex:0 0 auto; width:52px; height:30px; border-radius:30px; background:#d8d2c4;
+  position:relative; transition:background .18s;
+}
+.bool .switch::after{
+  content:""; position:absolute; top:3px; left:3px; width:24px; height:24px;
+  border-radius:50%; background:#fff; box-shadow:0 1px 3px rgba(0,0,0,.25); transition:left .18s;
+}
+.bool.on .switch{background:var(--ok);}
+.bool.on .switch::after{left:25px;}
+.bool .blabel{font-weight:600; font-size:15px;}
+
+/* ---------- Weekly section collapse ---------- */
+.weekly-body{display:none;}
+.weekly-body.open{display:block;}
+.weekly-toggle{
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:13px 15px; cursor:pointer; background:linear-gradient(180deg,#fff,#fdfbf6);
+}
+.weekly-toggle .lefty{display:flex; align-items:center; gap:10px;}
+.chev{transition:transform .2s; color:var(--muted);}
+.chev.open{transform:rotate(180deg);}
+.weekly-note{
+  font-size:13px; color:var(--muted); padding:0 15px 12px; margin-top:-2px;
+}
+.fluid-row{padding:12px 0; border-top:1px solid var(--line);}
+.fluid-row:first-child{border-top:none;}
+.fluid-row .row-label{margin-bottom:9px;}
+.lmf{display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px; margin-bottom:9px;}
+.lmf button{
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:14px;
+  padding:11px 4px; border-radius:9px; cursor:pointer; text-transform:uppercase;
+  border:1.5px solid var(--line-strong); background:#fff; color:var(--ink-soft); transition:all .14s;
+}
+.lmf button.active{background:var(--ink); border-color:var(--ink); color:#fff;}
+.filled-mini{display:inline-flex;}
+
+/* ---------- Photos confirmation ---------- */
+#photoCard{display:none;}
+#photoCard.show{display:block; animation:slide .2s ease;}
+#photoCard .card{border:1.5px solid var(--notok); background:var(--notok-soft);}
+#photoCard .card-head{background:transparent; border-bottom:1px solid #efc9bf;}
+#photoCard .card-head h2{color:var(--notok);}
+#photoCard .chip .box{border-color:var(--notok);}
+#photoCard .chip.on .box{background:var(--notok); border-color:var(--notok);}
+
+/* ---------- Summary preview ---------- */
+#summary .card-body{padding-top:12px;}
+.sum-line{display:flex; gap:9px; padding:7px 0; border-top:1px dashed var(--line); font-size:14.5px;}
+.sum-line:first-child{border-top:none;}
+.sum-tag{
+  flex:0 0 auto; font-family:"Barlow Semi Condensed",sans-serif; font-weight:700;
+  font-size:12px; letter-spacing:.04em; padding:2px 8px; border-radius:6px; text-transform:uppercase;
+  align-self:flex-start;
+}
+.t-ok{background:var(--ok-soft); color:var(--ok);}
+.t-known{background:var(--known-soft); color:var(--known);}
+.t-notok{background:var(--notok-soft); color:var(--notok);}
+.preview-text{
+  white-space:pre-wrap; font-family:"Barlow",monospace; font-size:13px; line-height:1.5;
+  background:#fbf9f3; border:1px solid var(--line); border-radius:10px; padding:12px;
+  margin-top:10px; color:var(--ink-soft); display:none;
+}
+.preview-text.show{display:block;}
+.linkbtn{
+  background:none; border:none; color:var(--lplate-deep); font-weight:700; font-size:13.5px;
+  cursor:pointer; padding:8px 0; text-decoration:underline; font-family:inherit;
+}
+
+/* ---------- Sticky action bar ---------- */
+.actionbar{
+  position:fixed; left:0; right:0; bottom:0; z-index:60;
+  background:rgba(255,255,255,.96); backdrop-filter:blur(8px);
+  border-top:1px solid var(--line-strong);
+  padding:10px 14px; padding-bottom:max(10px, env(safe-area-inset-bottom));
+  box-shadow:0 -6px 20px rgba(22,24,28,.08);
+}
+.actionbar-inner{max-width:680px; margin:0 auto; display:flex; gap:10px; align-items:stretch;}
+.btn-send{
+  flex:1 1 auto; font-family:"Archivo",sans-serif; font-weight:800; font-size:16px;
+  letter-spacing:.02em; color:#16181c; background:var(--lplate); border:none;
+  border-radius:12px; padding:15px 14px; cursor:pointer; text-transform:uppercase;
+  display:flex; align-items:center; justify-content:center; gap:9px;
+  box-shadow:0 3px 0 var(--lplate-deep); transition:transform .1s;
+}
+.btn-send:active{transform:translateY(2px); box-shadow:0 1px 0 var(--lplate-deep);}
+.btn-copy{
+  flex:0 0 auto; font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:13px;
+  color:var(--ink); background:#fff; border:1.5px solid var(--line-strong); border-radius:12px;
+  padding:8px 14px; cursor:pointer; text-transform:uppercase; letter-spacing:.03em; min-width:78px;
+}
+.toast{
+  position:fixed; left:50%; bottom:96px; transform:translateX(-50%) translateY(20px);
+  background:var(--ink); color:#fff; padding:11px 18px; border-radius:10px; font-weight:600;
+  font-size:14px; opacity:0; pointer-events:none; transition:all .25s; z-index:70; max-width:90%; text-align:center;
+}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+
+.foot{text-align:center; color:var(--muted); font-size:12px; padding:6px 14px 4px;}
+
+@media (prefers-reduced-motion:reduce){*{animation:none !important; transition:none !important;}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="head-row">
+    <div class="logo-chip">
+      <svg class="l2p-logo" viewBox="0 0 132 62" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="L2P logo">
+        <g transform="rotate(-9 30 36)">
+          <rect x="7" y="16" width="40" height="40" rx="7" fill="#f4c400" stroke="#141414" stroke-width="2.5"/>
+          <text x="27" y="46" font-family="Archivo, sans-serif" font-weight="800" font-size="33" fill="#141414" text-anchor="middle">L</text>
+        </g>
+        <g transform="rotate(4 66 32)">
+          <rect x="45" y="7" width="43" height="44" rx="7" fill="#1b1b1b" stroke="#000" stroke-width="1.5"/>
+          <text x="66" y="42" font-family="Archivo, sans-serif" font-weight="800" font-size="37" fill="#fff" text-anchor="middle">2</text>
+        </g>
+        <g transform="rotate(9 100 36)">
+          <rect x="84" y="16" width="40" height="40" rx="7" fill="#f3f0e9" stroke="#b9b2a3" stroke-width="2"/>
+          <text x="104" y="46" font-family="Archivo, sans-serif" font-weight="800" font-size="31" fill="#9b1c20" text-anchor="middle">P</text>
+        </g>
+      </svg>
+    </div>
+    <div class="head-titles">
+      <h1>Vehicle Condition Report</h1>
+      <p>Northern Suburbs Community Centre &middot; L2P</p>
+    </div>
+  </div>
+  <div class="status-pill" id="statusPill">
+    <span class="dot"></span><span id="statusText">All clear, no new issues</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- DETAILS -->
+  <section class="card">
+    <div class="card-head"><span class="tab"></span><h2>Today's Check</h2></div>
+    <div class="card-body">
+      <div class="field">
+        <label>Coordinator performing check</label>
+        <div class="pick2" id="inspector">
+          <button data-v="Mark Dover">Mark</button>
+          <button data-v="Mani Rai">Mani</button>
+        </div>
+      </div>
+      <div class="two-col" style="margin-top:12px;">
+        <div class="field" style="margin-top:0;">
+          <label>Date</label>
+          <input type="text" id="date" inputmode="numeric">
+        </div>
+        <div class="field" style="margin-top:0;">
+          <label>Time</label>
+          <input type="text" id="time">
+        </div>
+      </div>
+      <div class="field">
+        <label>Odometer (km)</label>
+        <input type="number" id="odo" inputmode="numeric" placeholder="e.g. 84210">
+      </div>
+      <div class="veh-chip">Hyundai i30 (2018) &middot; Rego H24SJ</div>
+    </div>
+  </section>
+
+  <!-- FUEL -->
+  <section class="card">
+    <div class="card-head"><span class="tab"></span><h2>Fuel</h2></div>
+    <div class="card-body">
+      <div class="field">
+        <label>Fuel gauge (approx.)</label>
+        <div class="gauge" id="fuel">
+          <button data-v="1/4">&frac14;</button>
+          <button data-v="1/2">&frac12;</button>
+          <button data-v="3/4">&frac34;</button>
+          <button data-v="Full">Full</button>
+        </div>
+      </div>
+      <div class="field">
+        <div class="bool" id="fuelFilled"><div class="switch"></div><span class="blabel">Filled up today</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXTERIOR -->
+  <section class="card">
+    <div class="card-head"><span class="tab"></span><h2>Exterior Checks</h2></div>
+    <div class="card-body" id="exterior"></div>
+  </section>
+
+  <!-- INTERIOR -->
+  <section class="card">
+    <div class="card-head"><span class="tab"></span><h2>Interior Checks</h2></div>
+    <div class="card-body" id="interior"></div>
+  </section>
+
+  <!-- DRIVING TOOLS -->
+  <section class="card">
+    <div class="card-head"><span class="tab"></span><h2>Driving Tools</h2><span class="hint">tick if present &amp; in good order</span></div>
+    <div class="card-body"><div class="chips" id="tools"></div></div>
+  </section>
+
+  <!-- WEEKLY -->
+  <section class="card">
+    <div class="weekly-toggle" id="weeklyToggle">
+      <div class="lefty"><span class="tab" style="height:20px;"></span>
+        <h2 style="margin:0; font-family:'Barlow Semi Condensed',sans-serif; font-weight:700; font-size:15.5px; letter-spacing:.05em; text-transform:uppercase;">Weekly Checks</h2>
+      </div>
+      <svg class="chev" id="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+    </div>
+    <div class="weekly-note">Engine, fluid levels &amp; battery. Only needs doing once a week (Mondays). Opens automatically on Mondays.</div>
+    <div class="weekly-body" id="weeklyBody">
+      <div class="card-body" style="padding-top:2px;" id="fluids"></div>
+      <div class="card-body" style="border-top:1px solid var(--line);">
+        <div class="row" style="border-top:none; padding-top:4px;">
+          <div class="row-label">Battery condition</div>
+          <div class="seg seg2" id="battery">
+            <button data-v="ok">OK</button>
+            <button data-v="notok">Not OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESENTATION + NOTES -->
+  <section class="card">
+    <div class="card-head"><span class="tab"></span><h2>Presentation &amp; Notes</h2></div>
+    <div class="card-body">
+      <div class="field">
+        <div class="bool" id="clean"><div class="switch"></div><span class="blabel">Vehicle is clean and presentable</span></div>
+      </div>
+      <div class="field">
+        <label>Cleaning done / additional notes</label>
+        <textarea id="notes" placeholder="e.g. vacuumed interior, washed exterior, windows cleaned. Any other notes."></textarea>
+      </div>
+    </div>
+  </section>
+
+  <!-- PHOTOS (appears only when a new Not OK exists) -->
+  <div id="photoCard">
+    <section class="card">
+      <div class="card-head"><span class="tab" style="background:var(--notok);"></span><h2>Photos Required</h2></div>
+      <div class="card-body">
+        <div class="chips">
+          <div class="chip" id="photoConfirm">
+            <div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div>
+            <span class="clabel">I have taken photos of the issue(s) and emailed them to l2p@nscctas.org.au</span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SUMMARY -->
+  <section class="card" id="summary">
+    <div class="card-head"><span class="tab"></span><h2>Summary</h2></div>
+    <div class="card-body">
+      <div id="sumLines"></div>
+      <button class="linkbtn" id="togglePreview">Show exactly what will be emailed</button>
+      <div class="preview-text" id="previewText"></div>
+    </div>
+  </section>
+
+  <p class="foot">Goes to manager@nscctas.org.au and l2p@nscctas.org.au</p>
+</main>
+
+<div class="actionbar">
+  <div class="actionbar-inner">
+    <button class="btn-send" id="sendBtn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+      Open Email to Send
+    </button>
+    <button class="btn-copy" id="copyBtn">Copy<br>Text</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =========================================================================
+   EDIT THIS SECTION
+   -------------------------------------------------------------------------
+   RECIPIENTS: who the report emails to.
+   ========================================================================= */
+const RECIPIENTS = ["manager@nscctas.org.au", "l2p@nscctas.org.au"];
+
+/* VEHICLE details (shown on the form and in the email). */
+const VEHICLE = { model: "Hyundai i30 (2018)", rego: "H24SJ" };
+
+/* -------------------------------------------------------------------------
+   KNOWN / ONGOING ISSUES
+   These are problems that are always present until repaired. They show in
+   amber as a "Known issue" and do NOT raise a red alert each day.
+   TO CLEAR ONE once it is fixed: change "known" to "ok" and delete its note.
+   ------------------------------------------------------------------------- */
+const EXTERIOR_ITEMS = [
+  { id:"windscreen",  label:"Windscreen, windows and mirrors (L/R)" },
+  { id:"wipers",      label:"Window wipers (front / back)" },
+  { id:"tyres",       label:"Tyres and wheels (tread, rims, hub caps)" },
+  { id:"headlights",  label:"Headlights (high / low beam, L/R)" },
+  { id:"indicators",  label:"Indicators (front L/R, back L/R)" },
+  { id:"body",        label:"Body (left / right / front / back)",
+                       def:"known", note:"Paintwork scratched, L2P stickers peeling from parking scrapes. Functional." },
+  { id:"bumperFront", label:"Bumper, front",
+                       def:"known", note:"Cracked and scratched but functional. Not scheduled for repair." },
+  { id:"bumperBack",  label:"Bumper, back", def:"ok" }   /* repaired under insurance, now OK */
+];
+
+const INTERIOR_ITEMS = [
+  { id:"gearstick",  label:"Gear stick" },
+  { id:"seatbelts",  label:"Seat belts (driver / passenger)" },
+  { id:"seats",      label:"Seats (driver / passenger)" },
+  { id:"glovebox",   label:"Glove box and console" },
+  { id:"mirrorsInt", label:"Mirrors (rearview and monitoring)" },
+  { id:"mats",       label:"Mats (front L/R, back L/R)" }
+];
+
+/* Driving tools. "present:true" means ticked by default.
+   Car wash tools start UNticked with a note; tick it once the new set is bought. */
+const TOOL_ITEMS = [
+  { id:"t_checklist", label:"Vehicle inspection checklist",        present:true },
+  { id:"t_progress",  label:"Learner driver progress checklist",   present:true },
+  { id:"t_exercise",  label:"Exercise book and pens",              present:true },
+  { id:"t_firstaid",  label:"First aid bag",                       present:true },
+  { id:"t_carwash",   label:"Car wash tools",                      present:false, note:"New set approved for purchase." },
+  { id:"t_roadsigns", label:"Road sign diagrams",                  present:true },
+  { id:"t_hivis",     label:"Hi-vis vest and sign / posts",        present:true }
+];
+
+const FLUID_ITEMS = [
+  { id:"f_engine",  label:"Engine lubricant" },
+  { id:"f_coolant", label:"Coolant" },
+  { id:"f_brake",   label:"Brake fluid" },
+  { id:"f_washer",  label:"Washer water level" }
+];
+/* ===================== END EDIT SECTION ================================= */
+
+
+/* ---------- State ---------- */
+const state = {
+  inspector:"", odo:"", fuel:"", fuelFilled:false,
+  exterior:{}, interior:{}, tools:{}, fluids:{}, battery:"",
+  clean:false, notes:"", photoConfirmed:false, weeklyIncluded:false
+};
+EXTERIOR_ITEMS.forEach(i=>state.exterior[i.id]={status:i.def||"ok", note:i.note||""});
+INTERIOR_ITEMS.forEach(i=>state.interior[i.id]={status:"ok", note:""});
+TOOL_ITEMS.forEach(i=>state.tools[i.id]={present:!!i.present, note:i.note||""});
+FLUID_ITEMS.forEach(i=>state.fluids[i.id]={level:"", filled:false});
+
+const labelOf = id =>
+  ([...EXTERIOR_ITEMS,...INTERIOR_ITEMS].find(x=>x.id===id)||{}).label || id;
+
+/* ---------- Helpers ---------- */
+const pad = n => String(n).padStart(2,"0");
+function todayStr(){const d=new Date();return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+d.getFullYear();}
+function nowTime(){let d=new Date(),h=d.getHours();const m=pad(d.getMinutes());const ap=h<12?"AM":"PM";h=h%12||12;return h+":"+m+" "+ap;}
+function $(s){return document.querySelector(s);}
+function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2200);}
+
+/* ---------- Build inspection rows ---------- */
+function buildSeg(group, id, current){
+  const wrap=document.createElement("div"); wrap.className="row";
+  const lab=document.createElement("div"); lab.className="row-label"; lab.textContent=labelOf(id); wrap.appendChild(lab);
+  const seg=document.createElement("div"); seg.className="seg";
+  const noteWrap=document.createElement("div"); noteWrap.className="note";
+  const noteEl=document.createElement("input"); noteEl.type="text"; noteEl.placeholder="Add a note (what's wrong, or detail)...";
+  noteEl.value=current.note||"";
+  noteEl.oninput=()=>{state[group][id].note=noteEl.value;};
+  noteWrap.appendChild(noteEl);
+  if(current.status==="known"||current.status==="notok") noteWrap.classList.add("show");
+  [["ok","OK"],["known","Known"],["notok","Not OK"]].forEach(([v,t])=>{
+    const b=document.createElement("button"); b.dataset.v=v; b.textContent=t;
+    if(current.status===v) b.classList.add("active");
+    b.onclick=()=>{
+      seg.querySelectorAll("button").forEach(x=>x.classList.remove("active"));
+      b.classList.add("active");
+      state[group][id].status=v;
+      noteWrap.classList.toggle("show", v==="known"||v==="notok");
+      recompute();
+    };
+    seg.appendChild(b);
+  });
+  wrap.appendChild(seg);
+  wrap.appendChild(noteWrap);
+  return wrap;
+}
+EXTERIOR_ITEMS.forEach(i=>$("#exterior").appendChild(buildSeg("exterior",i.id,state.exterior[i.id])));
+INTERIOR_ITEMS.forEach(i=>$("#interior").appendChild(buildSeg("interior",i.id,state.interior[i.id])));
+
+/* ---------- Driving tools ---------- */
+TOOL_ITEMS.forEach(i=>{
+  const chip=document.createElement("div"); chip.className="chip"+(i.present?" on":"");
+  chip.innerHTML='<div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><span class="clabel">'+i.label+'</span>';
+  chip.onclick=()=>{const on=chip.classList.toggle("on"); state.tools[i.id].present=on; recompute();};
+  $("#tools").appendChild(chip);
+  if(i.note!==undefined){
+    const nw=document.createElement("div"); nw.className="chip-note";
+    const ni=document.createElement("input"); ni.type="text"; ni.value=i.note; ni.placeholder="Note";
+    ni.oninput=()=>{state.tools[i.id].note=ni.value;};
+    nw.appendChild(ni); $("#tools").appendChild(nw);
+  }
+});
+
+/* ---------- Fluids ---------- */
+FLUID_ITEMS.forEach(i=>{
+  const row=document.createElement("div"); row.className="fluid-row";
+  const lab=document.createElement("div"); lab.className="row-label"; lab.textContent=i.label; row.appendChild(lab);
+  const lmf=document.createElement("div"); lmf.className="lmf";
+  [["Low","Low"],["Medium","Medium"],["Full","Full"]].forEach(([v,t])=>{
+    const b=document.createElement("button"); b.dataset.v=v; b.textContent=t;
+    b.onclick=()=>{lmf.querySelectorAll("button").forEach(x=>x.classList.remove("active")); b.classList.add("active"); state.fluids[i.id].level=v;};
+    lmf.appendChild(b);
+  });
+  row.appendChild(lmf);
+  const bWrap=document.createElement("div"); bWrap.className="bool"; bWrap.style.paddingTop="0";
+  bWrap.innerHTML='<div class="switch"></div><span class="blabel" style="font-weight:500; font-size:14px;">Topped up / filled today</span>';
+  bWrap.onclick=()=>{const on=bWrap.classList.toggle("on"); state.fluids[i.id].filled=on;};
+  row.appendChild(bWrap);
+  $("#fluids").appendChild(row);
+});
+
+/* ---------- Battery ---------- */
+$("#battery").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{$("#battery").querySelectorAll("button").forEach(x=>x.classList.remove("active")); b.classList.add("active"); state.battery=b.dataset.v; recompute();};
+});
+
+/* ---------- Top pickers ---------- */
+$("#inspector").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{$("#inspector").querySelectorAll("button").forEach(x=>x.classList.remove("active")); b.classList.add("active"); state.inspector=b.dataset.v;};
+});
+$("#fuel").querySelectorAll("button").forEach(b=>{
+  b.onclick=()=>{$("#fuel").querySelectorAll("button").forEach(x=>x.classList.remove("active")); b.classList.add("active"); state.fuel=b.dataset.v;};
+});
+$("#fuelFilled").onclick=()=>{const on=$("#fuelFilled").classList.toggle("on"); state.fuelFilled=on;};
+$("#clean").onclick=()=>{const on=$("#clean").classList.toggle("on"); state.clean=on;};
+$("#notes").oninput=e=>state.notes=e.target.value;
+$("#odo").oninput=e=>state.odo=e.target.value;
+$("#date").oninput=e=>state.date=e.target.value;
+$("#time").oninput=e=>state.time=e.target.value;
+$("#photoConfirm").onclick=()=>{const on=$("#photoConfirm").classList.toggle("on"); state.photoConfirmed=on;};
+
+/* ---------- Weekly collapse (auto-open Mondays) ---------- */
+const isMonday = new Date().getDay()===1;
+function setWeekly(open){
+  state.weeklyIncluded=open;
+  $("#weeklyBody").classList.toggle("open",open);
+  $("#chev").classList.toggle("open",open);
+}
+setWeekly(isMonday);
+$("#weeklyToggle").onclick=()=>setWeekly(!state.weeklyIncluded);
+
+/* ---------- Defaults ---------- */
+$("#date").value=todayStr(); state.date=$("#date").value;
+$("#time").value=nowTime();  state.time=$("#time").value;
+// preselect today's inspector by weekday: Mon/Tue = Mark, Wed/Thu = Mani
+(function(){const d=new Date().getDay();let who=null;if(d===1||d===2)who="Mark Dover";else if(d===3||d===4)who="Mani Rai";
+  if(who){const btn=[...$("#inspector").querySelectorAll("button")].find(b=>b.dataset.v===who); if(btn){btn.click();}}})();
+
+/* ---------- Issue logic ---------- */
+function newIssues(){
+  const out=[];
+  EXTERIOR_ITEMS.forEach(i=>{const s=state.exterior[i.id]; if(s.status==="notok") out.push({label:i.label, note:s.note});});
+  INTERIOR_ITEMS.forEach(i=>{const s=state.interior[i.id]; if(s.status==="notok") out.push({label:i.label, note:s.note});});
+  if(state.weeklyIncluded && state.battery==="notok") out.push({label:"Battery condition", note:""});
+  return out;
+}
+function knownIssues(){
+  const out=[];
+  EXTERIOR_ITEMS.concat(INTERIOR_ITEMS).forEach(i=>{
+    const group=EXTERIOR_ITEMS.includes(i)?"exterior":"interior";
+    const s=state[group][i.id]||{};
+    if(s.status==="known") out.push({label:i.label, note:s.note});
+  });
+  return out;
+}
+
+/* ---------- Recompute live status + summary + photo card ---------- */
+function recompute(){
+  const issues=newIssues();
+  const known=knownIssues();
+  const pill=$("#statusPill"), txt=$("#statusText");
+  if(issues.length){
+    pill.classList.add("has-issues");
+    txt.textContent=issues.length+" new issue"+(issues.length>1?"s":"")+" to report";
+    $("#photoCard").classList.add("show");
+  }else{
+    pill.classList.remove("has-issues");
+    txt.textContent="All clear, no new issues";
+    $("#photoCard").classList.remove("show");
+    state.photoConfirmed=false; $("#photoConfirm").classList.remove("on");
+  }
+  // summary lines
+  const sum=$("#sumLines"); sum.innerHTML="";
+  function line(tag,cls,text){const d=document.createElement("div"); d.className="sum-line";
+    d.innerHTML='<span class="sum-tag '+cls+'">'+tag+'</span><span>'+text+'</span>'; sum.appendChild(d);}
+  if(issues.length){issues.forEach(i=>line("Not OK","t-notok",i.label+(i.note?": "+i.note:"")));}
+  else{line("OK","t-ok","No new issues. All checked items OK.");}
+  known.forEach(i=>line("Known","t-known",i.label+(i.note?": "+i.note:"")));
+  // refresh preview if open
+  if($("#previewText").classList.contains("show")) $("#previewText").textContent=buildBody();
+}
+
+/* ---------- Build email subject + body ---------- */
+function statusWord(s){return s==="ok"?"OK":s==="known"?"KNOWN":s==="notok"?"NOT OK":"-";}
+function buildSubject(){
+  const issues=newIssues();
+  const flag=issues.length?("("+issues.length+" issue"+(issues.length>1?"s":"")+" to report)"):"(All clear)";
+  return "L2P Vehicle Condition Report - "+(state.date||todayStr())+" "+flag;
+}
+function buildBody(){
+  const issues=newIssues(), known=knownIssues();
+  const L=[];
+  const rule="----------------------------------------";
+  L.push("L2P VEHICLE CONDITION REPORT");
+  L.push(VEHICLE.model+", rego "+VEHICLE.rego);
+  L.push("");
+  L.push("Date: "+(state.date||todayStr())+"   Time: "+(state.time||nowTime()));
+  L.push("Inspector: "+(state.inspector||"(not set)"));
+  L.push("Odometer: "+(state.odo?state.odo+" km":"(not entered)"));
+  L.push("Fuel: "+(state.fuel||"-")+"   Filled up today: "+(state.fuelFilled?"Yes":"No"));
+  L.push("");
+  L.push(rule);
+  if(issues.length){
+    L.push("** NEW ISSUES TO REPORT: "+issues.length+" **");
+    L.push(rule);
+    issues.forEach((i,n)=>L.push((n+1)+". "+i.label+" - NOT OK"+(i.note?": "+i.note:"")));
+    L.push("");
+    L.push("Photos taken and emailed to L2P: "+(state.photoConfirmed?"YES":"NOT YET CONFIRMED"));
+  }else{
+    L.push("NEW ISSUES TO REPORT: NONE");
+    L.push("All checked items OK. Any ongoing/known issues listed below.");
+  }
+  L.push(rule);
+  L.push("");
+  if(known.length){
+    L.push("ONGOING / KNOWN ISSUES (logged, no action needed):");
+    known.forEach(i=>L.push("- "+i.label+(i.note?": "+i.note:"")));
+    L.push("");
+  }
+  // Exterior
+  L.push("EXTERIOR");
+  EXTERIOR_ITEMS.forEach(i=>{const s=state.exterior[i.id];L.push("  "+statusWord(s.status).padEnd(8)+i.label+(s.status!=="ok"&&s.note?"  ("+s.note+")":""));});
+  L.push("");
+  L.push("INTERIOR");
+  INTERIOR_ITEMS.forEach(i=>{const s=state.interior[i.id];L.push("  "+statusWord(s.status).padEnd(8)+i.label+(s.status!=="ok"&&s.note?"  ("+s.note+")":""));});
+  L.push("");
+  // Tools
+  L.push("DRIVING TOOLS");
+  const present=TOOL_ITEMS.filter(i=>state.tools[i.id].present).map(i=>i.label);
+  const missing=TOOL_ITEMS.filter(i=>!state.tools[i.id].present).map(i=>{const n=state.tools[i.id].note;return i.label+(n?" ("+n+")":"");});
+  L.push("  Present: "+(present.length?present.join(", "):"none"));
+  if(missing.length) L.push("  Missing / note: "+missing.join("; "));
+  L.push("");
+  // Weekly
+  if(state.weeklyIncluded){
+    L.push("WEEKLY CHECKS (engine, fluids, battery)");
+    FLUID_ITEMS.forEach(i=>{const f=state.fluids[i.id];L.push("  "+i.label+": "+(f.level||"-")+(f.filled?" (topped up today)":""));});
+    L.push("  Battery: "+statusWord(state.battery));
+    L.push("");
+  }
+  // Presentation + notes
+  L.push("VEHICLE PRESENTATION");
+  L.push("  Clean and presentable: "+(state.clean?"Yes":"No"));
+  L.push("");
+  if(state.notes.trim()){L.push("CLEANING / NOTES"); L.push("  "+state.notes.trim()); L.push("");}
+  return L.join("\n");
+}
+
+/* ---------- Preview toggle ---------- */
+$("#togglePreview").onclick=()=>{
+  const p=$("#previewText"); const open=p.classList.toggle("show");
+  $("#togglePreview").textContent=open?"Hide email preview":"Show exactly what will be emailed";
+  if(open) p.textContent=buildBody();
+};
+
+/* ---------- Validation ---------- */
+function validate(){
+  const probs=[];
+  if(!state.inspector) probs.push("choose who did the check (Mark or Mani)");
+  if(!state.odo) probs.push("enter the odometer reading");
+  if(newIssues().length && !state.photoConfirmed) probs.push("confirm photos of the issue(s) have been emailed");
+  return probs;
+}
+
+/* ---------- Send ---------- */
+$("#sendBtn").onclick=()=>{
+  const probs=validate();
+  if(probs.length){toast("Please "+probs[0]+".");return;}
+  const subject=encodeURIComponent(buildSubject());
+  const body=encodeURIComponent(buildBody());
+  const to=RECIPIENTS.join(",");
+  window.location.href="mailto:"+to+"?subject="+subject+"&body="+body;
+};
+
+/* ---------- Copy text fallback ---------- */
+$("#copyBtn").onclick=async()=>{
+  const text="To: "+RECIPIENTS.join(", ")+"\nSubject: "+buildSubject()+"\n\n"+buildBody();
+  try{await navigator.clipboard.writeText(text); toast("Report copied to clipboard");}
+  catch(e){
+    const ta=document.createElement("textarea"); ta.value=text; document.body.appendChild(ta); ta.select();
+    try{document.execCommand("copy"); toast("Report copied to clipboard");}catch(_){toast("Could not copy");}
+    document.body.removeChild(ta);
+  }
+};
+
+recompute();
+</script>
+</body>
+</html>
