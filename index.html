@@ -8,6 +8,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="L2P Check">
 <title>L2P Vehicle Condition Report</title>
+<link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADi0lEQVR4nO2Xz2tcVRTHP/e+nzNvJmOTySQksUIsunAjXbmRgAiCKIhu/IVBqAv/AWndCS6KG12IFaorwSrV0mYluNGdCIILlxXRZJBmJk2mnV/vzXv3unjvZd5MJs1MpsFNv3CYH/e8c7733HfOuUcwGgYgAHXI+qSQgAaicZVPCiKRgT+Gv+vTy3PPdHviZT/gcR0TGnhoQmjH0n+5LhubmzsbGV8663Sf2eLC3Od328Y7UkLllEJM4zpBfU/i92DGUzeUEm/WarVWSi41bwDRwsLc5WbbPLf2ZDe88Hab1eVQSBFTPQ4PnXxWtw39yTc5ff3nvOXlwh+2t3deSJaVSJ2vrJTXdhvyp7Wzfu/aRw3TsRBdf9BxpEDr/m9DcmSENOBYIEw490Ex+PrHvD1bCt+qVne+Asz98+35vCYl+v31lnAsxG4DwhB6Gcm74BXBK8QCEAzpDEsYQqMJYQDn11tyxlOq0+X1lJ9JkmqdHo9VTimxuhwJvwuW2d+d1mAa8OWGy+YtiW1BGMEbz3V5eEER9O4dCcsEP4DFspKPLEbyjz+NVSlAaSIzqyhEYmiEMUPCFzdy/PK7jZNX+D6snQ14dEXhB0cfxYD9DMzRqqPxUEEzU1IUPU3Xj3eWfSeOg4mKTqTi0KcyrfOJCZwEHhB4QOB/JzBRHRiG1oOSxbhddCoCpgHSjAuSHIrlcOM6EQKNlmC3IWi1DxIo5DTmGJVyIgLZWm5b8O7FGUyj3/dTnSCAKx82eOqJkGbnILljEwijfptVCuoNOfLs/UAQhOO9BxMRKHmacknj5TVKgUAf6JxpBOwxG9VYBISILx6Xzt8hjMa7nhVymk5w7/APE+jbPYR5ydNjp9cRWbBvxSQuRso2+bu+J1W1ZujKbEinGadXFmE02QU1JRtF4Dhw67bU1ZpUjq232k0gG6C8zXd+T8iPr+S0tKCQP0hXCJCinw1HSvKc64BThE+v5qL6niE9V3+fLMlURwJUKuXrrY7x4qvPtoP31tvGUjnqR3zSe3km/PU7Un92NRdduubZrq1+cxz36a2tLZ/MXCAA5ufnPSHUt3fb5vMlT3F6Mbovg0m1JqnvGRTz0a9a81K9Xv+X5OiHRzMNsLQ0u94N5CtdX5xBTzWaaQDH0v94rtpwvduXb97ET52nTrPYJwGZA5oCkUIIMVgsOTTP+gom8cR0vyATmwe29B8XdWSOG8y3SwAAAABJRU5ErkJggg==">
+<link rel="icon" type="image/png" sizes="48x48" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAFQUlEQVR4nO2ZTWhcVRTHf+e+j5l8TCaZJI1tI/iBoC60WEERrOhSKi6k0E13QlHcqIjaRcGFuBI3UtGFIi5EEXShC8UPpAoWtZRSKdVSoYWCTcZkkkxm8t6797h485qPSSbJJJNYyB/u8Lj3zLv//znnXt49F25wyBptzBptNxuu0dqGt0lENgKPFs5baSDr12KxOBCG4WOqer8xjDinHY2EMYKqVqzV06r6w8TExJVsiGWisRwZARSgVBo65vv6nGfM7sRCYqXjeaSAZyDwFed02jo+EpGXx8bGZlhGxFI+Asjo6GiuVqt9Ggbm4GwdZmrYUkG12Otw2rnFoIAIzNaF8UlDLsQvdEOU6Fln7cFGNBaJWMglW6xucHDwyzAwj09MEd+6x/rPHqrJgX0Rw/0O1Q6xz0gITFUNv54PePfzvJ46FySD/QRx7P5MkuTBSqVSaZi6pQI8wA4ODr4SBuaNiSmiR+6LwvePT7PnJkdSh8RuzVZkDAR5mK0KL77Vw/tfdsWlIkEcu0/K5fJhFkQh4yOADgwMFH3fuxTF0r9nyPLdiUkzUnJUpsH3t3YfTSzkQ/ACeOL5fk6eCWyhWz3F3Hvt2rWzmQjTsPcAROQx35PSTA197lDN7N6dkg8DMJKGd7mmukxjZfu1tMCHuQgCD14+UgVUEcFa+1SDswHwF6o2xjyUWLRUcPrwvoiklr6gFYyB7nxzv3NQj9qPAIDvQa0G99yRcPtey+V/AnIhD2RTNAkAN2KtL6U+ZajfYS0r5o0q5HPwxyWPYyd68X1AQUy6i9xze8zrz1SJk9SjbUHAOujrUXaVVC5dhRwMZxSWESBJRs6tstuogm+gMiN8/UtIGKZ9xqSLrz6Xpt1mYDEfsQvHlgiY9/da5lZSEcVeJQzmBRiBnq6O7beLqC0VsG4oaZitm1+81qVrYCtgVjf5f2NHwHZjR8B2Y0fAdmNHwHZjR8B244YXsOGPuVbITmeroe3zAh0UkB0Lna5OMPuSbQcdESACSQLlijAXtxagQE9+/jyxXmy6AOegK1TO/R3w4NOllraegamq8N6rUxw8EDE9k/atBx2PQCt4BipVIVolSq2wYQEiafXA95pTIFyFlGcgStbv9YXYkAARiBMoTwp+GznsG5irGeZi2q6atS1ABKIYRnc5XjtabcuLImnx6s5bLNFce2m0VIA2PbSYPBNw/Ojs+me+/iKIZiGKWpdhdNnHZgFeRm4tNZ0sheqTa2W7PDzT2vsiC9eJLqoVLhVQMUap1oWpqjDUv3pSZ4u4UzACtTpMTgueAVWms6kBXZS5zpnfAh/GJ438fj4gyKdV4u2CtZDLw19XfC5e9jSfU3WO041hc/2HrNYu7ltrXS0XIu983qWzVciFqYgO32s0k3eN1Ang7c+6qMciRhAR+aJhoksFeOVy+apT+aDQjTl1LkheeKsXP4BiAbyVyugdaAC93VAowpsfdvHxN/mkv4AXJ+6n8fHxkw3eFpqvmGR4eLhbVU/5ntz97xTxo/uj4KUjs+y7I6GvR7fkiqk2Bxcu+5z4LCVf7MVX1WlV9o+Pj19scG26YqKhzA0MDNzsed7Xvi93Tc2goPa2vU5GSi6teXbwls8YmJwRLl7xtB6J9BfwrNUJa+WJiYmxn2HlS75FIvr6+kpBELzte3IYEalHQpJ0iPgSeAbyOcUIxIn7EThaLpcv0LjHW2i7ki+vqxwaGrpPRJ8U2I/Irhb/2SwoyrR1egb4qlwuf9/obyK/GrJr1+1GSx5r8aZhPiJbtZtmpJV1ev2Gw39HXktBRkaVngAAAABJRU5ErkJggg==">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAScElEQVR4nO2dfWxkV3XAf+e+NzP22F5/zNibQGCL2pIgQRJKQEpoS4BUkOYTklLR0AIlorRJ1XQToCmq+AOQgIVFtAHaiqoSRaQiDYSEdPkKJU3aQAKhpaGFKoEqyhJiz4zX66/5evf0j/cm9m48tsce27Nvzk8a7Xrmed71vN8779xz730DhmEYhmEYhmEYhmEYhmEYhmEYhmH0H7LXDdiAgN5vYz8SAbrXjViLXpNFgHDVz429aoixIZnkXwWae9mQ1ey10AI44g/Fn/zi1NTU2ap6ZvKa2+W2Gc+kdRyOzMzMLKzxepD8G+1ek05kL4UOOfHMlsnJyf3AYe+9ACoirwmCYEK1J69ufYmIEEXRg8CjIhJ474+Wy+WbkpdbBypM/r/rYu+20K39BcQy56ampn7Fe/8C4ENA4Jwbb23svUdVGyJ7fSExWqgqzrlM65ioKt77kogsRFH0JsDPzs4+kGweEEf1XYtIu2mKsOoPKxQKfyAiVzrnXquqrIrCq6O2w1KNXmR1p1BIUo2W5CJyS6PR+NwqsU849jvJbgntAH/66afn6/X6y0Tkr0TkhQCq2mQll97NNhndoyVrBKhzLuO9XwC+45x7+/T09E/YpWi9G/IEQDQ+Pj6ayWT+Gbggicie+A8M1/9141QjSRMzItLKuT9WLpcPJi871igAdIudFFqShz9w4MDY4uLi10XkPFWNODEiG+lEk4d3zoXe+w+LyPuS6kjADnUYd0roVj25USgUPuqcux7IJlHZRO4/IhEJVLUGXFUqle7mmVWurrBTQodAs1gsftg5907vPWyxlhwGYEWO3sF7iLaWMEQi4oDIe//6crl8F5ADat1sX7dVESAL1IrF4kecczd672vJcxvuqyWuyMrGM8ccvpWkGHuLh4FBZXxEY6l1pYe3yaECJR5fwHt/ZSJ1VyN1tzUJgKhQKHw0CIKD3vsmm+j0icSReKkKqkKjCT75gA6+cYl9Q0ozski9l3gPA3n47iMhn//qAPkhRQQCp4Qh5DLQ2JyWKiIKSLPZvGR2dvYIccCrd6Od3VKk1cmLisXih5xz7/Le14kb2hYFMgE0IijPOs56XpNaXXjvtQuce2bE0jKcf24znjVgg4V7iwIZOD4ND/8opFCET98+wJ3352g2hCemHacXPVG0EozWwYtInId6f3W5XP4SXeoodkvoEKBQKBwKguCGzcgMcVR+quJ4VjHi8gvrvPuaRc6Y8mjyGgrHFzf1ARm7gCrkspAfiH+u1iCbh2/8e4a/u3OQL35rgFxWGRpUoo3VVBL/VPWKJP1wbFPqbgjtAD8xMbHPOTfHBp0/BUIHzsHPy46b37LI619d4yXnNFmuxB0ObW1IvJ3RO6iu5MviQD2M5AEHX/tulltuHeSu+3M8ZyqiWpONLqwNEQmBh2dmZs6jC6nHdoV2gI6Pj+8LguBu4KXEl45grY1bKcbCkrAwL7z/+gXe84dL+CWYW4BsZq3fMnqdyMeSj47B8iJc9WejHPnXHIWiJ3Bx/r0OTRGJvPefKJfLNxInmE22mGRuR2ghniGXV9V7nHMv895HtJEZYmGfLDkuvqDG711W5Q0X1lhYilseWCQ+5Wk0YWgwDk633TPIx27N87OSYySvNKJ1ZVPnnHjvD5VKpXexjdHE7QjtAN2/f/8rVfWe9WRuRebpWcdvvLTOHR+ZY2BYmaskubKRGlTjatTQJHz/+yGX3jDG3KIwPKjr1a+9iHhVnQXOKZVKT7Ey0tgR24mLAmiz2fzUquHsNQkdLCwLF59f4/aPzCEox0omcxoRiaUuPwHnntXkyx8/xtS436js6lTVO+eKwB8TR+cNiwprvtHWmk0GiCYnJ9/inHu2xnM/276Xc7Bw3PH7ly8zNKwsVyFj+XJqEYGBHMxW4MXnNnnlS+qUK45MsO4ATMZ7H4nI746NjR0g7hx2HPK2IrQQpxpTqvpGERlqt2Gr/PbzsvD+6+e57BV15iomc7+Qy8L8U3D44AKvfXmNmWNCpv0wW2sy2xnOuWvY4hzqreTQrdHA84IgeMh732BlweQJhAE8VXa8560LvO+GJebLVobrN7xCGEIkwiXXj/Kd/84yNuzb5dNxxVa1US6Xc1vZ31b0UkBU9ez1Zs+JxL3eZ016Xv/qOo0lG+zrR5xAtQrDQ8obLqoSBrrhvA8RmZ+YmHgBK1F78/vbQhs98Xj8J1S17RKpMIDyMcfrXlHlxec0mZ+30ly/ksvC/Cxcd3WV5+yPqNalXQdRgMg5V3DOfYCnB9w3T6eKCcDk5ORpwAJtgq4ILFWFs36hyU1vWmKxAtkt9VmNNNAq5TUj+OB1CzT9uhWPVu7sJicnh4kD6KajdKdChwDe+1uCICgSj7uvuTNVqDWEM6bisWybKNffaJJLP6voWVoSgvZCBN77pnPuClW9lHjUcNPVjq0kAY4N7mjUyp/fe+0isOm5skaKcQ4WluD5vxhx7ZXLlI/LRuMQW7Jmqzn08nobCBApvPjMBoEzoY2YRhNGx5UzDzSpt8+jW4iIVDrdRydCB0A0MTHxMufchcnoYPtzTGFx2RINYwUR0CYsV2WjHDRI7gxw8/79+4dYJ7U9mU6EFsCHYfh859zzkpLdM3aSCeNlUzf+zhLnndNkbrF3a8+t9XG+i4/WzDPjmWRCWJiDg9csc8GLGswtSjs3nKoiIhcuLy/n6CD96PieGKq6zAYzobyHfUNKJtu7B1cEhvM7s6yr0YBa0zrCa6EehvYpA9mN69GqWk+Wa22ardzkpVV7XndlQXNX72i2ebxCNoQny46b/nKEJ6YduYx2ZVWMCNQbwrWXL/PWy6osLffu1WkvUb/pVUgdz+XYsbsW9XJ0isWDRx4LefSJgMFs94Su1oVLXl7D9fIHsMfs5EfTt7fhEoGhAWU4r10VOgxt5c1e0rdCQ3zZe7pD1yWhvXUK9xTL8IxUYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqowoY1UYUIbqcKENlKFCW2kChPaSBUmtJEqTGgjVZjQRqoI97oBacR7aDTjh+uxkCECYbDXrdg5TOguo8BIXslOwsQivXcN9LA8D173uiE7gwndZTIBfOOhLMs1od6II2IvIALNSCiOeX77oir5AcX7vW5V9zGhu4gqhE75+oNZ7rw3Bz0iM4AT8A3hl5/X5NJfrTI8CJH2zgnXLUzoLtNKOcaGe+ua7gSqDWFy3ONSJvFqTOgdwHt67nLuJO6kNqO9bsnO0mtdFsPYFia0kSpMaCNVmNBGqjChjVRhQhupwoQ2UoUJbaQKE9pIFSa0kSpMaCNV9O1cDiGe6J4J40da5we3cBLPrkvz5H7oY6EjD9OzjkrZ4TLaF0L7hjCzz6X6b+07oUUgiqAwqhy+YZ6FJSFwSoqPMRBfkSIvjA57RgaVyKdvLjT0o9DE6cXQoHLVRbX+60V4WFqMFyOkkb4TuoX3MDe3163YfQQIUpxH963QkP4OUj/SbxdcI+WY0EaqMKGNVGFCG6nChDZSxY4J7X16a53G9thJN7YitE8e7VEYziuSMamNE1EFl4fs5tzo+C4iHQstIoMi0vb3vMLAgPLtRzKUpoWcSW0keIXsAPzXIyFPTLsN3RCRrKp2NEDfidAREDSbzX/x3t8nIgFrnEFRBOMjyue/OsAPfxySHzShjZgogsFh+OyRHP/zaMjQoLZzIxIRVPXQ8ePH54EANjfdphOhFXCVSuWo9/7RJEqvuRPvYXBIOa3oN9kMox9QBQI4Y8pDsG6g8yKiIvJNoEEHt73cSg4tIjK23gaq8XTFT/7TILV6Omd1GZ2hCvkB+MljAbfdk2NkKJ7xtw7ivS90up9OhVZAVfWnqtqkzZmjQODgrvty5AY7bZKRRlQhl4WFebjve1mG823vT63EXh13zpWT/2/6Ot+p0E2Acrl8o/d+3dwmDKHeFL7+QIbcIBudjUbKEQH1cOf9OYZHlKh9/SJyzoVRFN09MzPzFeIJdJuudmy1Du2AtpMvVSGXUY5OOz79pUG8k567vayxywiU5oRP3Z4ncBuGXA8ssoVbxm9F6ADw3vs3SZwcr3n2NJpwetHzxW8N8MB3Q8bG4+eM/qNag+EpOPTZPNOzjsFc2+qGAmEURbPlcvkdyc+NTva15ZFCEYmIZW57skUR5LLK4VvzLC3CsJXw+g4fQaEIDz8ccse9AwwPbtgZjFY9OmYrQkdAtlKpfE9VP+Ocy9DmLGotdbrr/hxXv3uMmQWHikndL3iFMAsP/iDkioOjHJ1xZDNtozPE+XMQRdHbkp87XoKx1QgdEUv896o6mwyyrNnMyMNzpjxH7svxpW9mGZmEen2LezVOKRpNGCzAe/92mJ+VHGPD637zViQigff+37LZ7EMkqW2n+9yO0K5UKt2nqg8lz7U976p1KBYjDn9uiP/4fshEwaROM6rx8Z2Ygr/+zAAP/jCkOKbU1+9DeaAmIv84PT39FB2MDq5mO0MeDpDTTjvtDO/9/3nvI9a5RDiBxaowOqQc+fgxzj6nyfx03II0fytTvxF5yGUgV4C/+cwg1x8aYXTY49y6qWYkIoGqPl4qlQ4Qe7RrOXQLBRCRmSiKDjvnApI69Vp4jb/ubG5RuPKdo7z55hEQyIbxpcmcPvWp1mHfKPzg0YCL3zbKn39yaDMya5Ky4pz7EzocSDmZbngkgBaLxQ8CNybPrbmaXIHQxV8tVp51vOaCOrd/dI6hvHJ8NhkiVxBngp8KqCaiSny8hvfDfz4ccMnBMZ4sOYpjiq4/nUeBhojMee+vLZfLd7KN6AzdExpAC4WCF2lp2f69ReL7yc3MOs5/YZ2rLqpx3dXLaARhBhYWk6idbGf0Dl7jcmxrbkYuG09Gq8zBBz47zN33Zjk6EzA2vGHODFB3zmW9918plUoXAzmgtp32dSsQBkBQKBR+0zl3G4CqOtZJaVRjWWfnhUwAz97v+fB185xe9Lzol5oMjAERLByLa5kWsvcWIRY3PwCZESCAxx8TnpoP+Nr9WT51e57pimMo78lm4lx6g0PWqmr8VFV/vVKpPEncMdxWUbebmjjAj4+PXxyG4d3Ek5hko30EyTTCak2IPCwuCddeuczzD0RUq3DTNUsMDhFfhEzqPUM9SB4eeSTgH44MsH9KueOeLPd9L8vIiOKcMphLvkV3YyUbzrmMqv44iqKLKpXKEyT+bLed3VYkBJqFQuEy59wdGvcENpQa4vRCBJyD8pzQqMeJ2QVnN8gldwc1n/cOr5DJwNFpx48eDSGAkSFlOK9Pf93yJgfMvHPOee8fq1ar5y8sLMzQJZlhZxzJAbVE6i8kUiuQ2ewbhMHKHOrji8nEJrN5TxFiYbMZTVaaxFfUDiadtTqAWeB/oyh6VaVSOUoSBLvZzp0gBJrFYvESEfkygKquW6duh7MbLfQUT1c2tvCrzjlJ0oxX74TMsLNxLwvUC4XC5Ul98VWq2jqfTdP+oUksbgO4V1XfXC6Xf0YX04zV7PSF/OlGFwqFw0EQ/KmqoqoN4j/SEon0EhEPmrQKrxcnE/Zhh2RuvfFO4onTjIFyuXzQe38I+GkyQ09YmX5q8+/SQes4NkUkSGT+off+ykTmXPL6ji332M0I2SrrjQZBcDPwDufcqF/pVbRyKRtKObVQVkb2QgDnHN77b6vqF8rl8qHktW2NAG6W3b7kr05BznTOvQ44qKo559y+VelIiwDLt3uRJivROEw6e3jvS0CUzWbfXKvVHqhUKseJJd/4bltdYi9yWCEu4bUmkMrExMRZQRD8hfd+JAiCS1sbJoLvQRON9RARkuV3eO9R1VuBpXK5/HZOTCHbLv7Ysbbt5s5OonWjmhOMnZyc/C1VdSLiVfWPROTXtlryM7pOa5rnYRF5UFUD7325Uql846TtWpPzdz0a9UqVQVhZrr760hQ+97nPHZnrx2/36VFGR0d5/PHHZ096ujVotqvReC16RegWwomR2NaJ9yY9e5x6TeiT6fX29SvWsTEMwzAMwzAMwzAMwzAMwzAMwzjV+X/l8jwQXIN8dQAAAABJRU5ErkJggg==">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;800&family=Archivo+Expanded:wght@700;800&family=Barlow:wght@400;500;600;700&family=Barlow+Semi+Condensed:wght@600;700&display=swap" rel="stylesheet">
@@ -110,6 +113,11 @@ main{max-width:680px; margin:0 auto; padding:16px 14px 0;}
   color:var(--ink);
 }
 .card-head .hint{margin-left:auto; font-size:12px; color:var(--muted); font-weight:500;}
+.card-head .tab-flag{background:var(--known);}
+#importantCard .card-head{background:linear-gradient(180deg,#fffdf6,#fbf3df);}
+#importantCard .card-head h2{color:#8a5e12;}
+#importantCard textarea{border-color:#e6cf95; background:#fffdf7;}
+#importantCard textarea:focus{border-color:var(--known);}
 .card-body{padding:6px 15px 14px;}
 
 /* ---------- Top details ---------- */
@@ -156,6 +164,13 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
 .row{padding:12px 0; border-top:1px solid var(--line);}
 .row:first-child{border-top:none;}
 .row-label{font-weight:600; font-size:15px; margin-bottom:9px; color:var(--ink);}
+.row-head{display:flex; align-items:baseline; gap:8px; flex-wrap:wrap; margin-bottom:9px;}
+.row-head .row-label{margin-bottom:0;}
+.ongoing-badge{
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:11px;
+  letter-spacing:.03em; text-transform:uppercase; color:var(--known);
+  background:var(--known-soft); padding:2px 8px; border-radius:20px; white-space:nowrap;
+}
 .seg{display:grid; grid-template-columns:1fr 1fr 1fr; gap:7px;}
 .seg button{
   font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:14px;
@@ -233,6 +248,20 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
 .lmf button.active{background:var(--ink); border-color:var(--ink); color:#fff;}
 .filled-mini{display:inline-flex;}
 
+/* ---------- Sync badge (shared list status) ---------- */
+.sync-badge{
+  display:inline-block; margin-left:auto; font-size:11px; font-weight:700;
+  letter-spacing:.03em; padding:3px 9px; border-radius:20px; white-space:nowrap;
+}
+.sync-badge.s-ok{background:var(--ok-soft); color:var(--ok);}
+.sync-badge.s-off{background:#f1ede3; color:var(--muted);}
+.sync-badge.s-load{background:#eef1f4; color:#5b6470;}
+.shared-tag{
+  display:inline-block; font-family:"Barlow Semi Condensed",sans-serif; font-weight:700;
+  font-size:10px; letter-spacing:.05em; text-transform:uppercase; vertical-align:middle;
+  background:#eef1f4; color:#5b6470; padding:1px 6px; border-radius:5px; margin-left:6px;
+}
+
 /* ---------- Photos confirmation ---------- */
 #photoCard{display:none;}
 #photoCard.show{display:block; animation:slide .2s ease;}
@@ -252,6 +281,8 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
   align-self:flex-start;
 }
 .t-ok{background:var(--ok-soft); color:var(--ok);}
+.t-note{background:#fbf3df; color:#8a5e12;}
+.t-ongoing{background:#fbe9c8; color:#9a6a16;}
 .t-known{background:var(--known-soft); color:var(--known);}
 .t-notok{background:var(--notok-soft); color:var(--notok);}
 .preview-text{
@@ -264,6 +295,16 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
   background:none; border:none; color:var(--lplate-deep); font-weight:700; font-size:13.5px;
   cursor:pointer; padding:8px 0; text-decoration:underline; font-family:inherit;
 }
+.save-row{margin-top:12px; padding-top:12px; border-top:1px solid var(--line);}
+.btn-save{
+  display:inline-flex; align-items:center; gap:8px; cursor:pointer;
+  font-family:"Barlow Semi Condensed",sans-serif; font-weight:700; font-size:14px;
+  letter-spacing:.02em; text-transform:uppercase; color:var(--ink);
+  background:#fff; border:1.5px solid var(--line-strong); border-radius:10px; padding:11px 14px;
+  transition:all .14s;
+}
+.btn-save:active{transform:scale(.98);}
+.save-hint{display:block; margin-top:8px; font-size:12.5px; color:var(--muted); line-height:1.4;}
 
 /* ---------- Sticky action bar ---------- */
 .actionbar{
@@ -338,8 +379,8 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
       <div class="field">
         <label>Coordinator performing check</label>
         <div class="pick2" id="inspector">
-          <button data-v="Mark Dover">Mark</button>
           <button data-v="Mani Rai">Mani</button>
+          <button data-v="Mark Dover">Mark</button>
         </div>
       </div>
       <div class="two-col" style="margin-top:12px;">
@@ -354,9 +395,17 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
       </div>
       <div class="field">
         <label>Odometer (km)</label>
-        <input type="number" id="odo" inputmode="numeric" placeholder="e.g. 84210">
+        <input type="number" id="odo" inputmode="numeric" placeholder="e.g. 151210">
       </div>
       <div class="veh-chip">Hyundai i30 (2018) &middot; Rego H24SJ</div>
+    </div>
+  </section>
+
+  <!-- IMPORTANT NOTES (surfaces at top of report; omitted from email if blank) -->
+  <section class="card" id="importantCard">
+    <div class="card-head"><span class="tab tab-flag"></span><h2>Important Notes</h2><span class="hint">shown at the top</span></div>
+    <div class="card-body">
+      <textarea id="important" placeholder="Anything that needs to stand out, e.g. damage to the vehicle, took the car to Bridgestone etc. Leave blank if nothing."></textarea>
     </div>
   </section>
 
@@ -428,7 +477,7 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
         <div class="bool" id="clean"><div class="switch"></div><span class="blabel">Vehicle is clean and presentable</span></div>
       </div>
       <div class="field">
-        <label>Cleaning done / additional notes</label>
+        <label>Cleaning done / any additional notes</label>
         <textarea id="notes" placeholder="e.g. vacuumed interior, washed exterior, windows cleaned. Any other notes."></textarea>
       </div>
     </div>
@@ -451,11 +500,18 @@ textarea{resize:vertical; min-height:64px; line-height:1.4;}
 
   <!-- SUMMARY -->
   <section class="card" id="summary">
-    <div class="card-head"><span class="tab"></span><h2>Summary</h2></div>
+    <div class="card-head"><span class="tab"></span><h2>Summary</h2><span class="sync-badge s-load" id="syncBadge">Checking shared list…</span></div>
     <div class="card-body">
       <div id="sumLines"></div>
       <button class="linkbtn" id="togglePreview">Show exactly what will be emailed</button>
       <div class="preview-text" id="previewText"></div>
+      <div class="save-row">
+        <button class="btn-save" id="saveBtn">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          Save a copy as a text file
+        </button>
+        <span class="save-hint">Downloads a dated text file (e.g. to keep in OneDrive). The full report is also in the email itself.</span>
+      </div>
     </div>
   </section>
 
@@ -486,22 +542,45 @@ const RECIPIENTS = ["manager@nscctas.org.au", "l2p@nscctas.org.au"];
 const VEHICLE = { model: "Hyundai i30 (2018)", rego: "H24SJ" };
 
 /* -------------------------------------------------------------------------
-   KNOWN / ONGOING ISSUES
-   These are problems that are always present until repaired. They show in
-   amber as a "Known issue" and do NOT raise a red alert each day.
-   TO CLEAR ONE once it is fixed: change "known" to "ok" and delete its note.
+   SHARED, PERSISTENT ISSUES (cloud memory)
+   Any row set to Known (amber) or Not OK (red) is saved to a small shared
+   space online, so it shows the SAME for Mark, Mani and anyone else, and
+   stays put between days until someone taps that row back to OK.
+
+   You manage it right on the form: tap a row's status to set it, tap OK to
+   clear it. No separate list to maintain, no code editing.
+
+   This access key can only READ and UPDATE this one bin. It cannot delete or
+   create anything. To change it, regenerate the key on jsonbin.io and paste
+   the new one here.
    ------------------------------------------------------------------------- */
+const CLOUD = {
+  binId:     "6a1d572021f9ee59d2a46cdc",
+  accessKey: "$2a$10$5Xu.oSMuq2Rdq99uk3z/VuFelEwVLKkDvNDC0kpS.y4AmLtLkL67.",
+  base:      "https://api.jsonbin.io/v3/b"
+};
+
+/* FALLBACK ONLY: shown if the shared list can't be reached (offline etc.) so
+   the form still works. These two long-standing issues have no date stamp
+   because they predate this system. Normally the live shared list is used. */
+const FALLBACK_ISSUES = [
+  { row:"body",        status:"known", note:"Paintwork scratched, L2P stickers peeling from parking scrapes. Functional.", raised:"" },
+  { row:"bumperFront", status:"known", note:"Cracked and scratched but functional. Not scheduled for repair.", raised:"" }
+];
+const FALLBACK_CARWASH = { present:false, note:"New set approved for purchase." };
+
+/* Inspection rows. All default OK; shared issues are applied on top at load. */
 const EXTERIOR_ITEMS = [
-  { id:"windscreen",  label:"Windscreen, windows and mirrors (L/R)" },
-  { id:"wipers",      label:"Window wipers (front / back)" },
-  { id:"tyres",       label:"Tyres and wheels (tread, rims, hub caps)" },
-  { id:"headlights",  label:"Headlights (high / low beam, L/R)" },
-  { id:"indicators",  label:"Indicators (front L/R, back L/R)" },
-  { id:"body",        label:"Body (left / right / front / back)",
-                       def:"known", note:"Paintwork scratched, L2P stickers peeling from parking scrapes. Functional." },
-  { id:"bumperFront", label:"Bumper, front",
-                       def:"known", note:"Cracked and scratched but functional. Not scheduled for repair." },
-  { id:"bumperBack",  label:"Bumper, back", def:"ok" }   /* repaired under insurance, now OK */
+  { id:"windscreenFront", label:"Windscreen, front" },
+  { id:"windscreenBack",  label:"Windscreen, back" },
+  { id:"windows",         label:"Windows and mirrors (L/R)" },
+  { id:"wipers",          label:"Window wipers (front / back)" },
+  { id:"tyres",           label:"Tyres and wheels (tread, rims, hub caps)" },
+  { id:"headlights",      label:"Headlights (high / low beam, L/R)" },
+  { id:"indicators",      label:"Indicators (front L/R, back L/R)" },
+  { id:"body",            label:"Body (left / right / front / back)" },
+  { id:"bumperFront",     label:"Bumper, front" },
+  { id:"bumperBack",      label:"Bumper, back" }
 ];
 
 const INTERIOR_ITEMS = [
@@ -513,14 +592,13 @@ const INTERIOR_ITEMS = [
   { id:"mats",       label:"Mats (front L/R, back L/R)" }
 ];
 
-/* Driving tools. "present:true" means ticked by default.
-   Car wash tools start UNticked with a note; tick it once the new set is bought. */
+/* Driving tools checked each day. Car wash tools is shared: its state comes
+   from the shared list and persists for everyone. */
 const TOOL_ITEMS = [
-  { id:"t_checklist", label:"Vehicle inspection checklist",        present:true },
   { id:"t_progress",  label:"Learner driver progress checklist",   present:true },
   { id:"t_exercise",  label:"Exercise book and pens",              present:true },
   { id:"t_firstaid",  label:"First aid bag",                       present:true },
-  { id:"t_carwash",   label:"Car wash tools",                      present:false, note:"New set approved for purchase." },
+  { id:"t_carwash",   label:"Car wash tools",                      present:false, note:"", shared:true },
   { id:"t_roadsigns", label:"Road sign diagrams",                  present:true },
   { id:"t_hivis",     label:"Hi-vis vest and sign / posts",        present:true }
 ];
@@ -538,48 +616,115 @@ const FLUID_ITEMS = [
 const state = {
   inspector:"", odo:"", fuel:"", fuelFilled:false,
   exterior:{}, interior:{}, tools:{}, fluids:{}, battery:"",
-  clean:false, notes:"", photoConfirmed:false, weeklyIncluded:false
+  clean:false, notes:"", important:"", photoConfirmed:false, weeklyIncluded:false
 };
-EXTERIOR_ITEMS.forEach(i=>state.exterior[i.id]={status:i.def||"ok", note:i.note||""});
-INTERIOR_ITEMS.forEach(i=>state.interior[i.id]={status:"ok", note:""});
+// each row: status (ok|known|notok), note, raised (stamp string), touched (changed this session)
+EXTERIOR_ITEMS.forEach(i=>state.exterior[i.id]={status:"ok", note:"", raised:"", touched:false});
+INTERIOR_ITEMS.forEach(i=>state.interior[i.id]={status:"ok", note:"", raised:"", touched:false});
 TOOL_ITEMS.forEach(i=>state.tools[i.id]={present:!!i.present, note:i.note||""});
 FLUID_ITEMS.forEach(i=>state.fluids[i.id]={level:"", filled:false});
 
+/* Shared (cloud) working copy. Starts from fallback so the form works
+   instantly and offline; replaced by the live shared list once it loads.
+   issues: [{row, status, note, raised}]  (raised = "Name, dd/mm" or "") */
+const shared = {
+  issues: FALLBACK_ISSUES.map(k=>({row:k.row, status:k.status, note:k.note, raised:k.raised||""})),
+  carwash: { present:FALLBACK_CARWASH.present, note:FALLBACK_CARWASH.note },
+  status: "loading"   // loading | online | offline | saving
+};
+
+/* Updater functions so the cloud load / clears can refresh drawn rows/tools. */
+const rowUpdaters = { exterior:{}, interior:{} };
+let carwashUpdater = null;
+let suppressSave = false;   // true while applying shared data, so we don't echo back
+
 const labelOf = id =>
   ([...EXTERIOR_ITEMS,...INTERIOR_ITEMS].find(x=>x.id===id)||{}).label || id;
+const groupOfRow = row =>
+  EXTERIOR_ITEMS.some(i=>i.id===row) ? "exterior"
+  : INTERIOR_ITEMS.some(i=>i.id===row) ? "interior" : null;
 
 /* ---------- Helpers ---------- */
 const pad = n => String(n).padStart(2,"0");
 function todayStr(){const d=new Date();return pad(d.getDate())+"/"+pad(d.getMonth()+1)+"/"+d.getFullYear();}
+function shortDate(){const d=new Date();return pad(d.getDate())+"/"+pad(d.getMonth()+1);}
 function nowTime(){let d=new Date(),h=d.getHours();const m=pad(d.getMinutes());const ap=h<12?"AM":"PM";h=h%12||12;return h+":"+m+" "+ap;}
 function $(s){return document.querySelector(s);}
 function toast(msg){const t=$("#toast");t.textContent=msg;t.classList.add("show");clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove("show"),2200);}
+function firstName(full){return (full||"").trim().split(/\s+/)[0]||"";}
+function makeStamp(){const n=firstName(state.inspector);const d=shortDate();return n?("["+n+", "+d+"] "):("["+d+"] ");}
+function hasStamp(note){return /^\[[^\]]*\]\s/.test(note||"");}
 
 /* ---------- Build inspection rows ---------- */
 function buildSeg(group, id, current){
   const wrap=document.createElement("div"); wrap.className="row";
-  const lab=document.createElement("div"); lab.className="row-label"; lab.textContent=labelOf(id); wrap.appendChild(lab);
+  const head=document.createElement("div"); head.className="row-head";
+  const lab=document.createElement("div"); lab.className="row-label"; lab.textContent=labelOf(id);
+  const badge=document.createElement("span"); badge.className="ongoing-badge"; badge.style.display="none";
+  head.appendChild(lab); head.appendChild(badge);
+  wrap.appendChild(head);
+
   const seg=document.createElement("div"); seg.className="seg";
   const noteWrap=document.createElement("div"); noteWrap.className="note";
   const noteEl=document.createElement("input"); noteEl.type="text"; noteEl.placeholder="Add a note (what's wrong, or detail)...";
   noteEl.value=current.note||"";
-  noteEl.oninput=()=>{state[group][id].note=noteEl.value;};
   noteWrap.appendChild(noteEl);
+
+  const showBadge=()=>{
+    const s=state[group][id];
+    if((s.status==="known"||s.status==="notok") && s.raised){ badge.textContent=s.raised; badge.style.display=""; }
+    else badge.style.display="none";
+  };
+
+  noteEl.oninput=()=>{ state[group][id].note=noteEl.value; scheduleSave(); };
+
   if(current.status==="known"||current.status==="notok") noteWrap.classList.add("show");
+
+  const btns={};
   [["ok","OK"],["known","Known"],["notok","Not OK"]].forEach(([v,t])=>{
     const b=document.createElement("button"); b.dataset.v=v; b.textContent=t;
     if(current.status===v) b.classList.add("active");
     b.onclick=()=>{
       seg.querySelectorAll("button").forEach(x=>x.classList.remove("active"));
       b.classList.add("active");
-      state[group][id].status=v;
-      noteWrap.classList.toggle("show", v==="known"||v==="notok");
+      const s=state[group][id];
+      const wasIssue = (s.status==="known"||s.status==="notok");
+      s.status=v;
+      s.touched=true;
+      if(v==="known"||v==="notok"){
+        // stamp the moment it's first raised (only if not already stamped)
+        if(!s.raised){ s.raised = makeStamp().replace(/^\[|\]\s$/g,""); }   // store "Name, dd/mm"
+        if(!hasStamp(noteEl.value) && firstName(state.inspector)!==""){
+          // prefix the editable note too, so it's visible inline
+          noteEl.value = "["+s.raised+"] " + noteEl.value.replace(/^\s+/,"");
+          s.note = noteEl.value;
+        }
+        noteWrap.classList.add("show");
+      } else {
+        // back to OK: clear stamp and remove from shared
+        s.raised=""; 
+      }
+      showBadge();
       recompute();
+      scheduleSave();
     };
-    seg.appendChild(b);
+    btns[v]=b; seg.appendChild(b);
   });
   wrap.appendChild(seg);
   wrap.appendChild(noteWrap);
+
+  // updater: lets cloud load / clears set this row without a user click
+  rowUpdaters[group][id]=(status,note,raised)=>{
+    state[group][id].status=status;
+    state[group][id].note=note||"";
+    state[group][id].raised=raised||"";
+    Object.values(btns).forEach(x=>x.classList.remove("active"));
+    if(btns[status]) btns[status].classList.add("active");
+    noteEl.value=note||"";
+    noteWrap.classList.toggle("show", status==="known"||status==="notok");
+    showBadge();
+  };
+  showBadge();
   return wrap;
 }
 EXTERIOR_ITEMS.forEach(i=>$("#exterior").appendChild(buildSeg("exterior",i.id,state.exterior[i.id])));
@@ -588,14 +733,26 @@ INTERIOR_ITEMS.forEach(i=>$("#interior").appendChild(buildSeg("interior",i.id,st
 /* ---------- Driving tools ---------- */
 TOOL_ITEMS.forEach(i=>{
   const chip=document.createElement("div"); chip.className="chip"+(i.present?" on":"");
-  chip.innerHTML='<div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><span class="clabel">'+i.label+'</span>';
-  chip.onclick=()=>{const on=chip.classList.toggle("on"); state.tools[i.id].present=on; recompute();};
+  const sharedTag = i.shared ? ' <span class="shared-tag">shared</span>' : '';
+  chip.innerHTML='<div class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></div><span class="clabel">'+i.label+sharedTag+'</span>';
+  chip.onclick=()=>{
+    const on=chip.classList.toggle("on"); state.tools[i.id].present=on; recompute();
+    if(i.shared){ shared.carwash.present=on; const w=$("#carwashNoteWrap"); if(w) w.style.display = on ? "none" : ""; scheduleSave(); }
+  };
   $("#tools").appendChild(chip);
-  if(i.note!==undefined){
-    const nw=document.createElement("div"); nw.className="chip-note";
-    const ni=document.createElement("input"); ni.type="text"; ni.value=i.note; ni.placeholder="Note";
-    ni.oninput=()=>{state.tools[i.id].note=ni.value;};
+  let noteInput=null;
+  if(i.shared){
+    const nw=document.createElement("div"); nw.className="chip-note"; nw.id="carwashNoteWrap";
+    const ni=document.createElement("input"); ni.type="text"; ni.value=i.note; ni.placeholder="Note (e.g. new set approved for purchase)";
+    ni.oninput=()=>{ state.tools[i.id].note=ni.value; shared.carwash.note=ni.value; scheduleSave(); };
     nw.appendChild(ni); $("#tools").appendChild(nw);
+    noteInput=ni; nw.style.display = i.present ? "none" : "";   // note only relevant while not present
+    carwashUpdater=(present,note)=>{
+      state.tools[i.id].present=present; state.tools[i.id].note=note||"";
+      chip.classList.toggle("on", present);
+      noteInput.value=note||"";
+      nw.style.display = present ? "none" : "";
+    };
   }
 });
 
@@ -632,6 +789,7 @@ $("#fuel").querySelectorAll("button").forEach(b=>{
 $("#fuelFilled").onclick=()=>{const on=$("#fuelFilled").classList.toggle("on"); state.fuelFilled=on;};
 $("#clean").onclick=()=>{const on=$("#clean").classList.toggle("on"); state.clean=on;};
 $("#notes").oninput=e=>state.notes=e.target.value;
+$("#important").oninput=e=>{state.important=e.target.value; recompute();};
 $("#odo").oninput=e=>state.odo=e.target.value;
 $("#date").oninput=e=>state.date=e.target.value;
 $("#time").oninput=e=>state.time=e.target.value;
@@ -650,63 +808,92 @@ $("#weeklyToggle").onclick=()=>setWeekly(!state.weeklyIncluded);
 /* ---------- Defaults ---------- */
 $("#date").value=todayStr(); state.date=$("#date").value;
 $("#time").value=nowTime();  state.time=$("#time").value;
-// preselect today's inspector by weekday: Mon/Tue = Mark, Wed/Thu = Mani
-(function(){const d=new Date().getDay();let who=null;if(d===1||d===2)who="Mark Dover";else if(d===3||d===4)who="Mani Rai";
-  if(who){const btn=[...$("#inspector").querySelectorAll("button")].find(b=>b.dataset.v===who); if(btn){btn.click();}}})();
+// default the inspector to Mani; either can tap to switch
+(function(){const btn=[...$("#inspector").querySelectorAll("button")].find(b=>b.dataset.v==="Mani Rai"); if(btn){btn.click();}})();
 
-/* ---------- Issue logic ---------- */
-function newIssues(){
+/* ---------- Issue logic ----------
+   An issue is "new today" if it was first raised today (stamp date == today),
+   or it was raised this session with no stamp. Otherwise it's "ongoing". */
+function raisedToday(s){
+  if(s.touched && !s.raised) return true;          // raised this session, no name set
+  if(!s.raised) return false;
+  const m=s.raised.match(/(\d{1,2}\/\d{1,2})\s*$/); // trailing dd/mm in "Name, dd/mm"
+  return m ? (m[1]===shortDate()) : false;
+}
+function notOkIssues(){
   const out=[];
-  EXTERIOR_ITEMS.forEach(i=>{const s=state.exterior[i.id]; if(s.status==="notok") out.push({label:i.label, note:s.note});});
-  INTERIOR_ITEMS.forEach(i=>{const s=state.interior[i.id]; if(s.status==="notok") out.push({label:i.label, note:s.note});});
-  if(state.weeklyIncluded && state.battery==="notok") out.push({label:"Battery condition", note:""});
+  EXTERIOR_ITEMS.forEach(i=>{const s=state.exterior[i.id]; if(s.status==="notok") out.push({label:i.label, note:s.note, raised:s.raised, isNew:raisedToday(s)});});
+  INTERIOR_ITEMS.forEach(i=>{const s=state.interior[i.id]; if(s.status==="notok") out.push({label:i.label, note:s.note, raised:s.raised, isNew:raisedToday(s)});});
+  if(state.battery==="notok") out.push({label:"Battery condition", note:"", raised:"", isNew:true});
   return out;
 }
 function knownIssues(){
   const out=[];
   EXTERIOR_ITEMS.concat(INTERIOR_ITEMS).forEach(i=>{
-    const group=EXTERIOR_ITEMS.includes(i)?"exterior":"interior";
+    const group=groupOfRow(i.id);
     const s=state[group][i.id]||{};
-    if(s.status==="known") out.push({label:i.label, note:s.note});
+    if(s.status==="known") out.push({label:i.label, note:s.note, raised:s.raised, isNew:raisedToday(s)});
   });
   return out;
+}
+/* New-today items only (used for photo prompt + the headline count). */
+function newlyRaised(){
+  return notOkIssues().filter(x=>x.isNew);
 }
 
 /* ---------- Recompute live status + summary + photo card ---------- */
 function recompute(){
-  const issues=newIssues();
+  const notok=notOkIssues();           // all outstanding Not OK (new + ongoing)
   const known=knownIssues();
+  const fresh=notok.filter(x=>x.isNew); // newly raised today
   const pill=$("#statusPill"), txt=$("#statusText");
-  if(issues.length){
+  if(notok.length){
     pill.classList.add("has-issues");
-    txt.textContent=issues.length+" new issue"+(issues.length>1?"s":"")+" to report";
-    $("#photoCard").classList.add("show");
+    const n=notok.length;
+    txt.textContent=n+" Not OK item"+(n>1?"s":"")+" outstanding";
   }else{
     pill.classList.remove("has-issues");
-    txt.textContent="All clear, no new issues";
+    txt.textContent="All clear, no Not OK items";
+  }
+  // photo card: only when something is newly raised today (once)
+  if(fresh.length){
+    $("#photoCard").classList.add("show");
+  }else{
     $("#photoCard").classList.remove("show");
     state.photoConfirmed=false; $("#photoConfirm").classList.remove("on");
   }
   // summary lines
   const sum=$("#sumLines"); sum.innerHTML="";
+  const esc=s=>s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   function line(tag,cls,text){const d=document.createElement("div"); d.className="sum-line";
-    d.innerHTML='<span class="sum-tag '+cls+'">'+tag+'</span><span>'+text+'</span>'; sum.appendChild(d);}
-  if(issues.length){issues.forEach(i=>line("Not OK","t-notok",i.label+(i.note?": "+i.note:"")));}
-  else{line("OK","t-ok","No new issues. All checked items OK.");}
+    d.innerHTML='<span class="sum-tag '+cls+'">'+tag+'</span><span>'+esc(text)+'</span>'; sum.appendChild(d);}
+  if(state.important && state.important.trim()){line("Note","t-note",state.important.trim());}
+  if(notok.length){
+    notok.forEach(i=>line(i.isNew?"Not OK":"Ongoing", i.isNew?"t-notok":"t-ongoing",
+      i.label+(i.note?": "+i.note:"")));
+  }else{
+    line("OK","t-ok","No Not OK items. All checked items OK.");
+  }
   known.forEach(i=>line("Known","t-known",i.label+(i.note?": "+i.note:"")));
-  // refresh preview if open
   if($("#previewText").classList.contains("show")) $("#previewText").textContent=buildBody();
 }
 
 /* ---------- Build email subject + body ---------- */
 function statusWord(s){return s==="ok"?"OK":s==="known"?"KNOWN":s==="notok"?"NOT OK":"-";}
 function buildSubject(){
-  const issues=newIssues();
-  const flag=issues.length?("("+issues.length+" issue"+(issues.length>1?"s":"")+" to report)"):"(All clear)";
+  const notok=notOkIssues();
+  const fresh=notok.filter(x=>x.isNew).length;
+  const hasNote=state.important && state.important.trim();
+  let flag;
+  if(notok.length){
+    flag="("+notok.length+" Not OK"+(fresh?", "+fresh+" new":"")+")";
+  } else if(hasNote){ flag="(Important note)"; }
+  else flag="(All clear)";
   return "L2P Vehicle Condition Report - "+(state.date||todayStr())+" "+flag;
 }
 function buildBody(){
-  const issues=newIssues(), known=knownIssues();
+  const notok=notOkIssues(), known=knownIssues();
+  const fresh=notok.filter(x=>x.isNew), ongoing=notok.filter(x=>!x.isNew);
   const L=[];
   const rule="----------------------------------------";
   L.push("L2P VEHICLE CONDITION REPORT");
@@ -715,21 +902,34 @@ function buildBody(){
   L.push("Date: "+(state.date||todayStr())+"   Time: "+(state.time||nowTime()));
   L.push("Inspector: "+(state.inspector||"(not set)"));
   L.push("Odometer: "+(state.odo?state.odo+" km":"(not entered)"));
-  L.push("Fuel: "+(state.fuel||"-")+"   Filled up today: "+(state.fuelFilled?"Yes":"No"));
+  L.push("Fuel: "+(state.fuel||"-")+"   -   Filled up today: "+(state.fuelFilled?"Yes":"No"));
   L.push("");
-  L.push(rule);
-  if(issues.length){
-    L.push("** NEW ISSUES TO REPORT: "+issues.length+" **");
-    L.push(rule);
-    issues.forEach((i,n)=>L.push((n+1)+". "+i.label+" - NOT OK"+(i.note?": "+i.note:"")));
+  if(state.important && state.important.trim()){
+    L.push("========================================");
+    L.push("IMPORTANT NOTES");
+    L.push("========================================");
+    state.important.trim().split(/\r?\n/).forEach(t=>L.push(t));
     L.push("");
-    L.push("Photos taken and emailed to L2P: "+(state.photoConfirmed?"YES":"NOT YET CONFIRMED"));
-  }else{
-    L.push("NEW ISSUES TO REPORT: NONE");
-    L.push("All checked items OK. Any ongoing/known issues listed below.");
   }
   L.push(rule);
-  L.push("");
+  if(fresh.length){
+    L.push("** NEW NOT OK ITEMS RAISED TODAY: "+fresh.length+" **");
+    L.push(rule);
+    fresh.forEach((i,n)=>L.push((n+1)+". "+i.label+" - NOT OK"+(i.note?": "+i.note:"")));
+    L.push("");
+    L.push("Photos taken and emailed to L2P: "+(state.photoConfirmed?"YES":"NOT YET CONFIRMED"));
+    L.push(rule);
+    L.push("");
+  } else {
+    L.push("NEW NOT OK ITEMS RAISED TODAY: NONE");
+    L.push(rule);
+    L.push("");
+  }
+  if(ongoing.length){
+    L.push("STILL OUTSTANDING (Not OK, from earlier):");
+    ongoing.forEach(i=>L.push("- "+i.label+(i.note?": "+i.note:"")));
+    L.push("");
+  }
   if(known.length){
     L.push("ONGOING / KNOWN ISSUES (logged, no action needed):");
     known.forEach(i=>L.push("- "+i.label+(i.note?": "+i.note:"")));
@@ -749,8 +949,10 @@ function buildBody(){
   L.push("  Present: "+(present.length?present.join(", "):"none"));
   if(missing.length) L.push("  Missing / note: "+missing.join("; "));
   L.push("");
-  // Weekly
-  if(state.weeklyIncluded){
+  // Weekly - only included if the checks were actually done
+  // (any fluid level chosen, or a battery state selected)
+  const weeklyDone = state.battery!=="" || FLUID_ITEMS.some(i=>state.fluids[i.id].level!=="");
+  if(weeklyDone){
     L.push("WEEKLY CHECKS (engine, fluids, battery)");
     FLUID_ITEMS.forEach(i=>{const f=state.fluids[i.id];L.push("  "+i.label+": "+(f.level||"-")+(f.filled?" (topped up today)":""));});
     L.push("  Battery: "+statusWord(state.battery));
@@ -774,9 +976,9 @@ $("#togglePreview").onclick=()=>{
 /* ---------- Validation ---------- */
 function validate(){
   const probs=[];
-  if(!state.inspector) probs.push("choose who did the check (Mark or Mani)");
+  if(!state.inspector) probs.push("choose who did the check (Mani or Mark)");
   if(!state.odo) probs.push("enter the odometer reading");
-  if(newIssues().length && !state.photoConfirmed) probs.push("confirm photos of the issue(s) have been emailed");
+  if(newlyRaised().length && !state.photoConfirmed) probs.push("confirm photos of the new issue(s) have been emailed");
   return probs;
 }
 
@@ -801,7 +1003,137 @@ $("#copyBtn").onclick=async()=>{
   }
 };
 
+/* ---------- Save a copy for OneDrive (dated .txt) ---------- */
+function isoDate(){
+  const m=(state.date||"").match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if(m) return m[3]+"-"+pad(m[2])+"-"+pad(m[1]);
+  const d=new Date(); return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());
+}
+$("#saveBtn").onclick=()=>{
+  const text="Subject: "+buildSubject()+"\n\n"+buildBody();
+  const blob=new Blob([text],{type:"text/plain;charset=utf-8"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url; a.download="L2P Vehicle Check "+isoDate()+".txt";
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+  toast("Copy saved. File it in OneDrive.");
+};
+
+/* ========================================================================
+   SHARED, PERSISTENT ISSUES (cloud) — read, apply, write
+   The shared list mirrors every row that is Known or Not OK, plus the car
+   wash status. Changing a row saves automatically; tapping a row to OK
+   removes it from the shared list for everyone.
+   ======================================================================== */
+
+/* Collect current issues (known/notok rows) from the form into a plain list. */
+function collectIssues(){
+  const out=[];
+  EXTERIOR_ITEMS.concat(INTERIOR_ITEMS).forEach(i=>{
+    const g=groupOfRow(i.id); if(!g) return;
+    const s=state[g][i.id];
+    if(s.status==="known"||s.status==="notok"){
+      out.push({row:i.id, status:s.status, note:s.note||"", raised:s.raised||""});
+    }
+  });
+  return out;
+}
+
+/* Apply the shared object onto the form. Rows the user has touched this
+   session are left alone so we never overwrite what they're doing. */
+function applyShared(){
+  suppressSave=true;
+  // reset untouched rows to OK first
+  EXTERIOR_ITEMS.concat(INTERIOR_ITEMS).forEach(i=>{
+    const g=groupOfRow(i.id); if(!g) return;
+    if(state[g][i.id].touched) return;
+    if(rowUpdaters[g][i.id]) rowUpdaters[g][i.id]("ok","","");
+  });
+  // apply each shared issue (unless that row was touched this session)
+  shared.issues.forEach(it=>{
+    const g=groupOfRow(it.row); if(!g) return;
+    if(state[g][it.row] && state[g][it.row].touched) return;
+    if(rowUpdaters[g][it.row]) rowUpdaters[g][it.row](it.status, it.note||"", it.raised||"");
+  });
+  if(carwashUpdater) carwashUpdater(!!shared.carwash.present, shared.carwash.note||"");
+  suppressSave=false;
+  setSyncBadge();
+  recompute();
+}
+
+/* Read the shared list from the cloud. */
+async function loadShared(){
+  shared.status="loading"; setSyncBadge();
+  try{
+    const r=await fetch(CLOUD.base+"/"+CLOUD.binId+"/latest",{
+      method:"GET",
+      headers:{ "X-Access-Key":CLOUD.accessKey, "X-Bin-Meta":"false" }
+    });
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    const data=await r.json();
+    const rec = (data && data.record!==undefined) ? data.record : data;
+    if(rec && Array.isArray(rec.issues)){
+      shared.issues=rec.issues.map(k=>({row:k.row, status:k.status||"known", note:k.note||"", raised:k.raised||""}));
+    } else if(rec && Array.isArray(rec.knownIssues)){
+      // migrate older format (all treated as known)
+      shared.issues=rec.knownIssues.map(k=>({row:k.row, status:"known", note:k.note||"", raised:k.raised||""}));
+    }
+    if(rec && rec.settings && rec.settings.t_carwash) shared.carwash={present:!!rec.settings.t_carwash.present, note:rec.settings.t_carwash.note||""};
+    else if(rec && rec.carwash) shared.carwash={present:!!rec.carwash.present, note:rec.carwash.note||""};
+    shared.status="online";
+  }catch(e){
+    console.warn("Shared load failed, using fallback:",e);
+    shared.status="offline";
+  }
+  applyShared();
+}
+
+/* Write the current issues + car wash back to the cloud. */
+let saveTimer=null;
+function scheduleSave(){
+  if(suppressSave) return;
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(saveShared, 600);   // debounce rapid taps/typing
+}
+async function saveShared(){
+  shared.issues = collectIssues();
+  shared.status="saving"; setSyncBadge();
+  const payload={
+    issues: shared.issues.map(k=>({row:k.row, label:labelOf(k.row), status:k.status, note:k.note||"", raised:k.raised||""})),
+    settings: { t_carwash:{ present:!!shared.carwash.present, note:shared.carwash.note||"" } },
+    lastUpdated: isoDate(),
+    lastUpdatedBy: state.inspector || "someone"
+  };
+  try{
+    const r=await fetch(CLOUD.base+"/"+CLOUD.binId,{
+      method:"PUT",
+      headers:{ "Content-Type":"application/json", "X-Access-Key":CLOUD.accessKey },
+      body: JSON.stringify(payload)
+    });
+    if(!r.ok) throw new Error("HTTP "+r.status);
+    shared.status="online"; setSyncBadge();
+  }catch(e){
+    console.warn("Shared save failed:",e);
+    shared.status="offline"; setSyncBadge();
+  }
+}
+
+/* Sync badge. */
+function setSyncBadge(){
+  const el=$("#syncBadge"); if(!el) return;
+  const map={loading:["Checking shared list…","s-load"],online:["Shared list synced","s-ok"],
+             offline:["Offline, change saved for today only","s-off"],saving:["Saving…","s-load"]};
+  const pair=map[shared.status]||map.loading;
+  el.textContent=pair[0]; el.className="sync-badge "+pair[1];
+}
+
+/* Car wash toggle/note live in the Driving Tools area and save on change. */
+
+loadShared();    // fetch the live shared list (fallback already shown)
+
 recompute();
+
 </script>
 </body>
 </html>
